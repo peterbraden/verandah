@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">	
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />			
+		<title>{% block title %}{% endblock %}| Verandah</title>
+
+		<link rel="shortcut icon" href="{{ MEDIA }}/images/favicon.ico" />
+		
+		<link rel="stylesheet" type="text/css" href="{{ MEDIA }}/styles/style.css" />
+		<link rel="stylesheet" media = 'print' type="text/css" href="{{ MEDIA }}/styles/print.css" />
+		
+		<script type = 'text/javascript' src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
+		<script type = 'text/javascript' src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.5.3/jquery-ui.min.js"></script>
+		<script type = 'text/javascript' src="{{ MEDIA }}/js/verandah.js"></script>
+	</head>
+	
+	<body>
+		<!--[if lt IE 7]>
+			<div class = 'ie6warning'>
+				<p>Your browser is out of date. Many sites, including this one, are no longer tested in your browser and therefore may not display correctly. Additionally, you may be vulnerable to security issues.</p>
+				<p>To upgrade to a supported browser, please visit <a href = "http://getfirefox.com">this site</a> or contact your system administrator.</p>
+			</div>
+		<![endif]-->
+
+	
+		<div id="verandah">
+			<div id="header">		
+
+			</div>	
+			
+			<div id = 'page'>			
+				<div id = 'navi'>	
+
+				</div>
+				<div id="content">
+				{% block content %}
+				
+				{% endblock %}
+				</div>	
+				<div id = "footer">
+
+				</div>
+			</div>
+		</div>
+	</body>
+</html>	
+		
+		
