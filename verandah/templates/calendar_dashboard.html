@@ -26,8 +26,8 @@ th{
 	
 td{
 	border: 1px solid #ddd;
-	width: 7em;
-	height: 5em;
+	width: 9em;
+	height: 6em;
 	padding: 0.5em;
 	margin: 0;	
 }
@@ -35,8 +35,26 @@ td{
 	background-color: #ffd;
 }
 
-.date{color:#999; font-style: italic; font-size: 80%; display: block}
+.date{
+	color:#999; 
+	font-style: italic; 
+	font-size: 80%; 
+	display: block;
+	vertical-align: text-top;}
 
+ul{margin:0; padding: 0;}
+
+.event{
+	font-size: 70%;
+	list-style: none; 
+	background-color: #9f9;
+	border: thin solid #0f0; 
+	-moz-border-radius: 0.5em;
+	padding:0.2em;
+	margin:0.2em;
+	color: #090;
+	}
+.event .time{font-weight: bold; font-size: 80%;}	
 </style>
 
 <h2>{{ month.name }}</h2>
@@ -53,9 +71,14 @@ td{
 			{% for day in week %}
 				<td class = 'day {% if day.is_today %}today{% endif %}'>
 					<span class = 'date'>{{ day.date|date:"d" }}</span>
-					{% for event in day.events %}
-						{{ event }}
-					{% endfor %}
+					{% if day.events %}
+						<ul>
+						{% for event in day.events %}
+							<li class = 'event'>{{ event.summary }}
+								<span class = 'time'>{{ event.start|date:"h:m" }} - {{ event.end|date:"h:m" }}</span></li>
+						{% endfor %}
+						</ul>
+					{% endif %}	
 				</td>
 			{% endfor %}
 		</tr>
