@@ -10,15 +10,22 @@ import icalendar
 def parse_iCal(url):
 	calendar = urllib.urlopen(url)
 	cal = icalendar.Calendar.from_string(calendar.read())
-	c = Calendar(
-		id = cal.decoded('X-WR-CALNAME')
-	)
-	c.save()
+	
+	try:
+		c = Calendar.objects.get(id = cal.decoded('X-WR-CALNAME'))
+	except Calendar.DoesNotExist, e:	
+		c = Calendar(
+			id = cal.decoded('X-WR-CALNAME')
+		)
+		c.save()
 	
 	for component in cal.walk():
 		if component.name == 'VEVENT':
 			
 			def dat(param):
+				"""
+				Due to mysql crappery we discard timezone info. 
+				"""
 				if isinstance(component.decoded(param), datetime.datetime):
 					return component.decoded(param).replace(tzinfo = None)
 				return  component.decoded(param)
@@ -37,16 +44,30 @@ def parse_iCal(url):
 				'created' : dat('created'),
 				'calendar' : c,
 				}
-			if Event.objects.filter(id = kwargs['id']):
-				print "Skipping - Event exists"
-				continue
-			e = Event(**kwargs)
-			print e
-			e.save()
+			
+			try:
+				event = Event.objects.get(id = kwargs['id'])
+				if event.sequence >= kwargs['sequence']:
+					print "Skipping %s - Up to date event exists." % event
+				else:
+					print "Updating Event: %s " % event
+					for k, v in kwargs.items():
+						setattr(event, k, v)
+					event.save()	
+
+			except Event.DoesNotExist:
+				event = Event(**kwargs)
+				print "Creating Event: %s" % event
+				event.save()
 			
  
 class Calendar(models.Model):
  	id = models.CharField(primary_key = True, max_length = 60)	
+ 
+	style = models.TextField() 
+
+	def cls(self):
+		return self.id.replace(" ", "") 
  
 class Event(models.Model):
  	id = models.CharField(primary_key = True, max_length = 60)
@@ -67,6 +88,8 @@ class Event(models.Model):
 	
 	created = models.DateTimeField()
 
+	def __str__(self):
+		return "Event:'%s' " % self.summary
 
 class Month(calendar.Calendar):
 	startday = calendar.SUNDAY

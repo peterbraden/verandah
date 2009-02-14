@@ -17,8 +17,8 @@
 						{% if day.events %}
 							<ul>
 							{% for event in day.events %}
-								<li class = 'event'>{{ event.summary }}
-									<span class = 'time'>{{ event.start|date:"h:m" }} - {{ event.end|date:"h:m" }}</span></li>
+								<li class = 'event cal-{{event.calendar.cls}}'>{{ event.summary }}
+									<span class = 'time'>{{ event.start|date:"H:m" }} - {{ event.end|date:"H:m" }}</span></li>
 							{% endfor %}
 							</ul>
 						{% endif %}	

@@ -3,8 +3,13 @@
 
 {% block title %}{{ month.name }} Overview {% endblock %}
 
-
 {% block content %}
+<style type="text/css">
+{% for cal in calendars %}
+	.cal-{{cal.cls}}{ {{ cal.style }} }
+{% endfor %}
+</style>
+
 	{% for month in months %}
 		{% include 'fragments/calendar_month.html' %}
 	{% endfor %}

@@ -20,6 +20,7 @@ def dashboard(request, date = None):
  	dates = [{'year': 2009, 'month' : i} for i in range(1,12)]
  
 	context = {
-		'months' : [cal.models.Month(date['year'], date['month']) for date in dates]
+		'months' : [cal.models.Month(date['year'], date['month']) for date in dates],
+		'calendars' :cal.models.Calendar.objects.all(),
 	} 
 	return _render(request, 'calendar_dashboard.html', context)
