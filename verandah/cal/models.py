@@ -116,7 +116,8 @@ class Month(calendar.Calendar):
 				dy = {
 					'date' : day,
 					'is_today' : day == datetime.datetime.now().date(),
-					'events' : Event.objects.filter(start__year = day.year, start__month = day.month, start__day = day.day).order_by('start')
+					'events' : Event.objects.filter(start__year = day.year, start__month = day.month, start__day = day.day).order_by('start'),
+					'othermonth' : day.month != self.month,
 				}
 				
 				wk.append(dy)
