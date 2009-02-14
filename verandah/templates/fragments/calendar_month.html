@@ -1,87 +1,30 @@
-{% extends 'base.html' %}
 
-
-{% block title %}{{ month.name }} Overview {% endblock %}
-
-
-{% block content %}
-
-<style type = 'text/css'>
-body{
-	font-family: "American Typewriter";
-}
-
-table{
-	border-collapse: collapse;
-	background-color: #efffef;
-	border: 3px solid #e0e0ff;
-	padding: 1em;
-	}
-	
-th{
-	padding: 0.5em;
-	background-color: #f0f0ff;
-	border: 1px solid #ddd;
-}
-	
-td{
-	border: 1px solid #ddd;
-	width: 9em;
-	height: 6em;
-	padding: 0.5em;
-	margin: 0;	
-}
-.today{
-	background-color: #ffd;
-}
-
-.date{
-	color:#999; 
-	font-style: italic; 
-	font-size: 80%; 
-	display: block;
-	vertical-align: text-top;}
-
-ul{margin:0; padding: 0;}
-
-.event{
-	font-size: 70%;
-	list-style: none; 
-	background-color: #9f9;
-	border: thin solid #0f0; 
-	-moz-border-radius: 0.5em;
-	padding:0.2em;
-	margin:0.2em;
-	color: #090;
-	}
-.event .time{font-weight: bold; font-size: 80%;}	
-</style>
-
-<h2>{{ month.name }}</h2>
-<table>
-	<thead>
-		{% for day in month.day_names %}
-			<th>
-				{{ day }}	
-			</th>
-		{% endfor %}
-	</thead>		
-	{% for week in month.weeks %}
-		<tr>
-			{% for day in week %}
-				<td class = 'day {% if day.is_today %}today{% endif %}'>
-					<span class = 'date'>{{ day.date|date:"d" }}</span>
-					{% if day.events %}
-						<ul>
-						{% for event in day.events %}
-							<li class = 'event'>{{ event.summary }}
-								<span class = 'time'>{{ event.start|date:"h:m" }} - {{ event.end|date:"h:m" }}</span></li>
-						{% endfor %}
-						</ul>
-					{% endif %}	
-				</td>
+<div id = 'month-{{ month.name }}{{ month.year }}' class = 'month'>
+	<h2>{{ month.name }}</h2>
+	<table>
+		<thead>
+			{% for day in month.day_names %}
+				<th>
+					{{ day }}	
+				</th>
 			{% endfor %}
-		</tr>
-	{% endfor %}
-</table>	
-{% endblock %}
+		</thead>		
+		{% for week in month.weeks %}
+			<tr id = "week-{{ week.number }}">
+				{% for day in week %}
+					<td id = "date-{{day.date|date:"Y-m-d"}}" class = 'day {% if day.is_today %}today{% endif %}'>
+						<span class = 'date'>{{ day.date|date:"d" }}</span>
+						{% if day.events %}
+							<ul>
+							{% for event in day.events %}
+								<li class = 'event'>{{ event.summary }}
+									<span class = 'time'>{{ event.start|date:"h:m" }} - {{ event.end|date:"h:m" }}</span></li>
+							{% endfor %}
+							</ul>
+						{% endif %}	
+					</td>
+				{% endfor %}
+			</tr>
+		{% endfor %}
+	</table>	
+</div>

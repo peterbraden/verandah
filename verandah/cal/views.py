@@ -17,7 +17,9 @@ def _render(request, template, context = {}):
 def dashboard(request, date = None):
 	date = date or datetime.datetime.now()
  
+ 	dates = [{'year': 2009, 'month' : i} for i in range(1,12)]
+ 
 	context = {
-		'month' : cal.models.Month(date.year, date.month)
+		'months' : [cal.models.Month(date['year'], date['month']) for date in dates]
 	} 
 	return _render(request, 'calendar_dashboard.html', context)

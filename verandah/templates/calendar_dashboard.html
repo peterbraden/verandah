@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+
+{% block title %}{{ month.name }} Overview {% endblock %}
+
+
+{% block content %}
+	{% for month in months %}
+		{% include 'fragments/calendar_month.html' %}
+	{% endfor %}
+		
+{% endblock %}
