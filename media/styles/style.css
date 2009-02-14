@@ -91,7 +91,7 @@ body{
 
 ul{margin:0; padding: 0;}
 
-.event{
+#content table.month td .event{
 	font-size: 0.25em;
 	list-style: none; 
 	-moz-border-radius: 0.5em;
@@ -102,6 +102,11 @@ ul{margin:0; padding: 0;}
 	}
 .event .time{font-weight: bold; font-size: 70%;}	
 
+#addBox .event{
+	padding:3em;
+	font-size: 1em;
+}
+
 #content #siderail{
 	float:left;
 	width:18em;
@@ -111,4 +116,36 @@ ul{margin:0; padding: 0;}
 }
 
 
+
+/* AddBox Stuff */
+
+#addBox_overlay {
+  background-image: url('/media/images/overlay.png'); 
+  position: absolute;
+  margin: auto;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width:  100%;
+  height: 100%;
+}
+
+* html #addBox_overlay {
+  background-color: #000;
+  background-color: transparent;
+  background-image: url('/media/images/blank.gif');
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/media/images/overlay.png", sizingMethod="scale");
+}
+
+#addBox{
+	top: 20%;
+	left: 0px;
+	position: absolute;	
+	-moz-border-radius:2em;
+	overflow: auto;
+	width: 400px;
+	height: 400px;
+	z-index: 150;
+	display:none;
+}
 

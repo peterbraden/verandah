@@ -23,7 +23,10 @@
 								<ul>
 								{% for event in day.events %}
 									<li class = 'event cal-{{event.calendar.cls}}'>{{ event.summary }}
-										<span class = 'time'>{{ event.start|date:"H:m" }} - {{ event.end|date:"H:m" }}</span></li>
+										<span class = 'time'>{{ event.start|date:"H:m" }} - {{ event.end|date:"H:m" }}</span>
+										<span class = 'location'>{{ event.location }}</span>
+									
+									</li>
 								{% endfor %}
 								</ul>
 							{% endif %}	
