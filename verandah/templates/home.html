@@ -1,4 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
+<div id = 'calendar'>
+	<h2><a href = '{% url calendar %}'>Calendar</a></h2>
+	{% include 'fragments/calendar_month.html' %}
+</div>
+
+<div id = 'typewriter'>
+	<h2><a href = '{% url typewriter %}'>Typewriter</a></h2>
+</div>
+
 {% endblock %}

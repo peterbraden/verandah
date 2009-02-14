@@ -12,6 +12,12 @@
 		<script type = 'text/javascript' src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
 		<script type = 'text/javascript' src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.5.3/jquery-ui.min.js"></script>
 		<script type = 'text/javascript' src="{{ MEDIA }}/js/verandah.js"></script>
+	
+		<style type="text/css">
+		{% for cal in calendars %}
+			.cal-{{cal.cls}}{ {{ cal.style }} }
+		{% endfor %}
+		</style>
 	</head>
 	
 	<body>
@@ -25,7 +31,14 @@
 	
 		<div id="verandah">
 			<div id="header">		
+				<h1>Verandah <span>{% block header %}{% endblock %}</span></h1>
 
+				<ul>
+					<li><a href = '{% url calendar %}' >Calendar</a></li>
+					<li><a href = '{% url typewriter %}' >Typewriter</a></li>
+				</ul>	
+				
+				<br />
 			</div>	
 			
 			<div id = 'page'>			
@@ -33,9 +46,14 @@
 
 				</div>
 				<div id="content">
-				{% block content %}
+					<div id = "main">
+					{% block content %}
 				
-				{% endblock %}
+					{% endblock %}
+					</div>
+					<div id = 'siderail'>
+						{% block siderail %}{% endblock %}
+					</div>
 				</div>	
 				<div id = "footer">
 

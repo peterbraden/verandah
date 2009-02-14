@@ -3,15 +3,23 @@
 
 {% block title %}{{ month.name }} Overview {% endblock %}
 
-{% block content %}
-<style type="text/css">
-{% for cal in calendars %}
-	.cal-{{cal.cls}}{ {{ cal.style }} }
-{% endfor %}
-</style>
+{% block header %} &gt; Calendar &gt; {{ month.name }} {{ month.year }}{% endblock %}
 
-	{% for month in months %}
-		{% include 'fragments/calendar_month.html' %}
-	{% endfor %}
-		
+{% block content %}
+	<div class = 'time-nav'>
+		<a href = '{{ month.prev.get_absolute_url }}'>&lt; {{month.prev.name}}</a>
+		<a href = '{{ month.next.get_absolute_url }}'>{{month.next.name}} &gt;</a>
+	</div>
+
+	{% include 'fragments/calendar_month.html' %}
+
+{% endblock %}
+
+{% load webdesign %}
+
+{% block siderail %}
+	<h2>Agenda</h2>
+	<div>
+	{% lorem 3 p%}
+	</div>
 {% endblock %}

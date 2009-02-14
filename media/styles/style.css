@@ -1,23 +1,60 @@
+html{padding:0; margin:0;}
 body{
-	font-family: "American Typewriter";
+	font-family: "Fontin Sans", Sans;
+	background-color: #eee;
+	padding:0;
+	margin:0;
 }
 
-table{
+
+#header{
+	background-color: #555;
+	color: #fff;
+	padding:0.2em;
+	margin:0;
+}
+
+#header h1{float:left; margin:0;}
+#header h1 span{font-size: 90%; color:#99f;}
+#header ul{float:right;}
+#header ul li{display: inline; list-style: none;}
+#header ul li a{color:#fff;}
+#header br {clear:both;}
+
+
+#content{
+	width:80em;
+	margin:0 auto;
+}
+
+#content #main{
+	float:left;
+	width:60em;
+}
+
+#content h2.monthname{
+	text-align: center;
+}
+
+#content table.month{
 	border-collapse: collapse;
 	background-color: #efffef;
 	border: 3px solid #e0e0ff;
 	padding: 1em;
+	margin: 0 auto;
 	}
+
+
 	
-th{
+#content table.month th{
 	padding: 0.5em;
 	background-color: #e0e0f0; 
 	border: 1px solid #bbb;
 }
 	
-td{
+#content table.month td{
 	border: thin solid #bbb;
-	width: 9em;
+	width: 8em;
 	height: 6em;
 	padding: 0;
 	margin: 0;	
@@ -64,3 +101,14 @@ ul{margin:0; padding: 0;}
 	font-family: "Helvetica";
 	}
 .event .time{font-weight: bold; font-size: 70%;}	
+
+#content #siderail{
+	float:left;
+	width:18em;
+	border-left: 3px solid #999;
+	border-right: 3px solid #999;
+	padding:0.5em;
+}
+
+
+

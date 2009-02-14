@@ -4,6 +4,7 @@ import urllib
 
 from django.db import models
 
+import settings
 import icalendar 
 
 
@@ -100,6 +101,16 @@ class Month(calendar.Calendar):
 		self.month = month
 
 
+	def prev(self):
+		if self.month >1:
+			return Month(self.year, self.month - 1)	
+		return Month(self.year-1, 12)
+	
+	def next(self):
+		if self.month <12:
+			return Month(self.year, self.month + 1)	
+		return Month(self.year+1, 1)
+
 	def name(self):
 		return calendar.month_name[self.month]
 
@@ -124,5 +135,6 @@ class Month(calendar.Calendar):
 			weeks.append(wk)
 		return weeks
 		
-		
+	def get_absolute_url(self):
+		return "%s/calendar/month/%s/%02d" % (settings.DOMAIN, self.year, self.month)		
 				

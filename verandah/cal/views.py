@@ -14,13 +14,11 @@ def _render(request, template, context = {}):
 	"""
 	return HttpResponse(get_template(template).render(RequestContext(request, context)))
 
-def dashboard(request, date = None):
-	date = date or datetime.datetime.now()
- 
- 	dates = [{'year': 2009, 'month' : i} for i in range(1,12)]
+def dashboard(request, year = None, month = None):
+	date = datetime.datetime.now()
  
 	context = {
-		'months' : [cal.models.Month(date['year'], date['month']) for date in dates],
+		'month' : cal.models.Month(int(year) or date.year, int(month) or date.month),
 		'calendars' :cal.models.Calendar.objects.all(),
 	} 
 	return _render(request, 'calendar_dashboard.html', context)

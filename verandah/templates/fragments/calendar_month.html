@@ -1,7 +1,7 @@
 
-<div id = 'month-{{ month.name }}{{ month.year }}' class = 'month'>
-	<h2>{{ month.name }}</h2>
-	<table>
+<div id = 'month-{{ month.name }}{{ month.year }}'>
+	<h2 class = 'monthname'>{{ month.name }}</h2>
+	<table class = 'month'>
 		<thead>
 			{% for day in month.day_names %}
 				<th>
