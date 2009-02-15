@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Documents{% endblock %}
+
+{% block header %} &gt; Typewriter &gt; Documents{% endblock %}
+
+{% block content %}
+	<ul>
+		{% for document in documents %}
+		<li>
+			<a href = "{% url typewriter_document document.name %}">{{ document.name }}</a>
+		</li>
+		{% endfor %}
+	</ul>
+{% endblock %}

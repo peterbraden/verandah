@@ -114,11 +114,13 @@ ul{margin:0; padding: 0;}
 
 /*Typewriter */
 
-#content #typewriter .document{
-	width:60em;
+#content #typewriter textarea{
+	width:50em;
 	height:100em;
 	margin:3em;
 	padding:1em;
+	font-size: 100%;
+	font-family: Monaco, Courier;
 }
 
 /**/
@@ -131,7 +133,9 @@ ul{margin:0; padding: 0;}
 }
 
 
-
+#footer {
+	clear: both;
+	}
 /* AddBox Stuff */
 
 #addBox_overlay {

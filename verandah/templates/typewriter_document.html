@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+
+{% block title %}{% if document %}{{ document.name }}{% else %}Untitled{% endif %}{% endblock %}
+
+{% block header %} &gt; Typewriter &gt; {% if document %}{{ document.name }}{% else %}Untitled{% endif %}{% endblock %}
+
+{% block content %}
+<div id = "typewriter">
+	<form action = "{% url typewriter_document document.name %}" method="post">
+	
+		<fieldset id="controls">
+			<input type="submit" value="Save" />
+			<a href = "#revisions">Revisions</a>
+		</fieldset>
+		{{ form.name }}
+		{{ form.content }}
+		
+	</form>
+</div>
+{% endblock %}
