@@ -1,2 +1,7 @@
+from django.template import RequestContext
+from django.template.loader import get_template
+from django.http import HttpResponse, Http404, HttpResponseRedirect
+
+
 def dashboard(request):
-	pass
+	return HttpResponse(get_template("typewriter_document.html").render(RequestContext(request, {})))

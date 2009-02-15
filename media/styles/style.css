@@ -32,6 +32,7 @@ body{
 	width:60em;
 }
 
+/* Calendar */
 #content h2.monthname{
 	text-align: center;
 }
@@ -52,12 +53,20 @@ body{
 	border: 1px solid #bbb;
 }
 	
-#content table.month td{
+#content table.month .day{
 	border: thin solid #bbb;
 	width: 8em;
 	height: 6em;
 	padding: 0;
 	margin: 0;	
+}
+
+#addBox .day{
+	font-size: 120%;
+	width: 20em;
+	height:14em;
+	font-size: 1em;
+	background-color: #eee;
 }
 
 .today{
@@ -70,7 +79,7 @@ body{
 }
 
 
-.day-header{
+#content table.month .day-header{
 	height:1em;
 	background-color: #f0f0ff;
 	border-bottom: thin solid #eee;
@@ -102,11 +111,17 @@ ul{margin:0; padding: 0;}
 	}
 .event .time{font-weight: bold; font-size: 70%;}	
 
-#addBox .event{
-	padding:3em;
-	font-size: 1em;
+
+/*Typewriter */
+
+#content #typewriter .document{
+	width:60em;
+	height:100em;
+	margin:3em;
+	padding:1em;
 }
 
+/**/
 #content #siderail{
 	float:left;
 	width:18em;

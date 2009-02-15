@@ -44,7 +44,7 @@ verandah.hide_dialogs = function(){
 
 $(document).ready(function(){
 	
-	$(".event").click(function(){
+	$(".day").click(function(){
 		verandah.addBox.show($(this).clone());
 	}).css('cursor', 'pointer');
 	
