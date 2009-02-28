@@ -22,6 +22,8 @@ body{
 #header ul li a{color:#fff;}
 #header br {clear:both;}
 
+#header #auth{ font-size: 70%; font-weight: lighter; margin-right: 0.5em;}
+
 
 #content{
 	width:78em;

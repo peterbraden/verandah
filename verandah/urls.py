@@ -10,6 +10,11 @@ urlpatterns = patterns('',
 
 	url(r'^accounts/login/$', 'django.contrib.auth.views.login'),
 
+
+	url(r'^user/edit$', 'core.views.homepage', name = 'user-edit'),
+	url(r'^login$', 'django.contrib.auth.views.login', name = 'login'),
+	url(r'^logout$', 'django.contrib.auth.views.logout', name = 'logout'),
+
 )
 
 if settings.CONFIG == 'dev':

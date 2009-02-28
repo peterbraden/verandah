@@ -40,11 +40,11 @@
 				
 				<ul id ="auth">
 					{% if user %}
-						<li>Logged in as {{ user.username }}</li>
-						<li>Logout</li>
+						<li>Logged in as <a href = "{% url user-edit %}">{{ user.username }}</a></li>
+						<li><a href = "{% url logout %}">Logout</a></li>
 					{% else %}
-						<li>Login</li>
-						<li>Signup</li>	
+						<li><a href = "{% url login %}">Login</a></li>
+						<li><a href = "{% url login %}">Signup</a></li>	
 					{% endif %}	
 				</ul>
 				<br />
