@@ -15,6 +15,7 @@ body{
 }
 
 #header h1{float:left; margin:0;}
+#header h1 a{color: #fff; text-decoration: none;}
 #header h1 span{font-size: 90%; color:#99f;}
 #header ul{float:right;}
 #header ul li{display: inline; list-style: none;}
@@ -31,6 +32,14 @@ body{
 	float:left;
 	width:60em;
 }
+
+/* Homepage */
+#content #homepage div.widget{
+	width:20em;
+	float:left;
+	border:thin solid #bbb;
+	}
+
 
 /* Calendar */
 #content h2.monthname{
@@ -127,6 +136,7 @@ ul{margin:0; padding: 0;}
 #content #siderail{
 	float:left;
 	width:18em;
+	min-height: 100em;
 	border-left: 3px solid #999;
 	border-right: 3px solid #999;
 	padding:0.5em;
@@ -135,6 +145,10 @@ ul{margin:0; padding: 0;}
 
 #footer {
 	clear: both;
+	background-color: #bbb;
+	margin-top: 3em;
+	padding: 0.5em;
+	border-top: 0.5em solid #ddd;
 	}
 /* AddBox Stuff */
 

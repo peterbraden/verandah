@@ -15,22 +15,7 @@
 					<td id = "date-{{day.date|date:"Y-m-d"}}"
 					 	class = 'day {% if day.is_today %}today{% endif %}
 					 	{% if day.othermonth %}othermonth{% endif %}'>
-						<div class = 'day-header'>
-							<span class = 'date'>{{ day.date|date:"d" }}</span>
-						</div>
-						<div class = 'day-body'>
-							{% if day.events %}
-								<ul>
-								{% for event in day.events %}
-									<li class = 'event cal-{{event.calendar.cls}}'>{{ event.summary }}
-										<span class = 'time'>{{ event.start|date:"H:m" }} - {{ event.end|date:"H:m" }}</span>
-										<span class = 'location'>{{ event.location }}</span>
-									
-									</li>
-								{% endfor %}
-								</ul>
-							{% endif %}	
-						</div>
+							{% include 'fragments/calendar_day.div' %}
 					</td>
 				{% endfor %}
 			</tr>

@@ -1,14 +1,25 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-<div id = 'calendar'>
-	<h2><a href = '{% url calendar %}'>Calendar</a></h2>
-	{% include 'fragments/calendar_month.html' %}
+<div id = "homepage">
+	<div id = 'calendar' class = 'widget'>
+		<h2><a href = '{% url calendar %}'>Calendar</a></h2>
+		<div id = "today">
+			{% include 'fragments/calendar_day.div' %}
+		</div>
+	</div>
+	
+	<div id = 'typewriter' class = 'widget'>
+		<h2><a href = '{% url typewriter %}'>Typewriter</a></h2>
+		<ul>
+			{% for document in documents %}
+			<li>
+				<a href = "{% url typewriter_document document.name %}">{{ document.name }}</a>
+			</li>
+			{% endfor %}
+		</ul>
+		
+		
+	</div>
 </div>
-
-<div id = 'typewriter'>
-	<h2><a href = '{% url typewriter %}'>Typewriter</a></h2>
-</div>
-
 {% endblock %}

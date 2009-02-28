@@ -137,4 +137,10 @@ class Month(calendar.Calendar):
 		
 	def get_absolute_url(self):
 		return "%s/calendar/month/%s/%02d" % (settings.DOMAIN, self.year, self.month)		
-				
+
+
+class Day(object):
+	def __init__(self, date):
+		self.date = date
+		self.is_today = self.date == datetime.datetime.now().date()	
+		self.events = Event.objects.filter(start__year = date.year, start__month = date.month, start__day = date.day).order_by('start'),				
