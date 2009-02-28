@@ -10,7 +10,7 @@ import cal.models
 
 def _render(request, template, context = {}):
 	"""
-	Render the templat with the appropriate context
+	Render the template with the appropriate context
 	"""
 	return HttpResponse(get_template(template).render(RequestContext(request, context)))
 
@@ -21,4 +21,4 @@ def dashboard(request, year = None, month = None):
 		'month' : cal.models.Month(year and int(year) or date.year, month and int(month) or date.month),
 		'calendars' :cal.models.Calendar.objects.all(),
 	} 
-	return _render(request, 'calendar_dashboard.html', context)
+	return _render(request, 'cal/templates/calendar_dashboard.html', context)
