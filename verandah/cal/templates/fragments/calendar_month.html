@@ -1,6 +1,12 @@
 
+		
+		
 <div id = 'month-{{ month.name }}{{ month.year }}'>
-	<h2 class = 'monthname'>{{ month.name }}</h2>
+	<div id = 'time-nav'>
+		<h2><a href = '{{ month.prev.get_absolute_url }}'>&lt; {{month.prev.name}}</a></h2>
+		<h2 class = 'monthname'>{{ month.name }}</h2>
+		<h2><a href = '{{ month.next.get_absolute_url }}'>{{month.next.name}} &gt;</a></h2>
+	</div>	
 	<table class = 'month'>
 		<thead>
 			{% for day in month.day_names %}

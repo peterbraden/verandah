@@ -42,9 +42,10 @@ body{
 
 
 /* Calendar */
-#content h2.monthname{
-	text-align: center;
-}
+#content #time-nav{display: block; text-align: center; padding: 0.5em;}
+#content #time-nav h2{display: inline; padding: 0 1em 0 1em;}
+#content #time-nav h2 a{color: #999;text-decoration: none;}
+#content #time-nav h2 a:hover{color:#000; text-decoration: underline; }
 
 #content table.month{
 	border-collapse: collapse;
@@ -67,7 +68,9 @@ body{
 	width: 8em;
 	height: 6em;
 	padding: 0;
-	margin: 0;	
+	margin: 0;
+	overflow: hidden;
+
 }
 
 #addBox .day{
@@ -76,6 +79,8 @@ body{
 	height:14em;
 	font-size: 1em;
 	background-color: #eee;
+	overflow: hidden;
+
 }
 
 .today{
@@ -110,7 +115,7 @@ body{
 ul{margin:0; padding: 0;}
 
 #content table.month td .event{
-	font-size: 0.25em;
+	font-size: 0.5em;
 	list-style: none; 
 	-moz-border-radius: 0.5em;
 	padding:0.2em;

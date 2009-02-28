@@ -6,10 +6,6 @@
 {% block header %} &gt; Calendar &gt; {{ month.name }} {{ month.year }}{% endblock %}
 
 {% block content %}
-	<div class = 'time-nav'>
-		<a href = '{{ month.prev.get_absolute_url }}'>&lt; {{month.prev.name}}</a>
-		<a href = '{{ month.next.get_absolute_url }}'>{{month.next.name}} &gt;</a>
-	</div>
 
 	{% include 'cal/templates/fragments/calendar_month.html' %}
 
