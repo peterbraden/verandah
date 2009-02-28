@@ -15,25 +15,28 @@
 
 {% endblock %}
 
-{% load webdesign %}
-
 {% block siderail %}
 	<h2>Calendars</h2>
 		<ul>
 			{% for cal in calendars %}
 			<li class = 'cal-{{event.calendar.cls}}' >
-				{{ cal.id }}
+				{{ cal.name }}
 				{% if cal.urls %}
-					<a href = "{% url cal.views.sync %}">Sync</a>
+					<a href = "{% url cal.views.sync cal.id %}">Sync</a>
 				{% else %}
-					<a href = "{% url cal.views.sync %}">Add url</a>		
+					<a href = "{% url cal.views.sync cal.id %}">Add url</a>		
 				{% endif %}
 			</li>
 			{% endfor %}
+			<li><a href = "{% url calendar-add %}">Add a Calendar</a></li>
 		</ul>
 			
 	<h2>Agenda</h2>
-	<div>
-	{% lorem 3 p%}
-	</div>
+	<ul>
+		{% for item in agenda %}
+		<li>
+			{{ item }}
+		</li>
+		{% endfor %}
+	</ul>
 {% endblock %}

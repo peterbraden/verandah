@@ -5,6 +5,7 @@ from django.template.loader import get_template
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
+from django.shortcuts import get_object_or_404
 
 import cal.models
 from cal.forms import CalendarForm
@@ -24,17 +25,19 @@ def dashboard(request, year = None, month = None):
 	context = {
 		'month' : cal.models.Month(year and int(year) or date.year, month and int(month) or date.month),
 		'calendars' : cal.models.Calendar.objects.filter(owner = request.user),
+		'agenda' : cal.models.Event.objects.filter(calendar__owner = request.user, start__gt = date).order_by('start')[:5],
 	} 
 	return _render(request, 'cal/templates/calendar_dashboard.html', context)
 
 
 @login_required
-def sync(request, calendar = None):	
-	cal.models.parse_iCal(url, request.user)
-	return dashboard(request)	
+def sync(request, calendar):
+	calendar = get_object_or_404(cal.models.Calendar, id = calendar)	
+	cal.models.parse_iCal(calendar.urls, request.user, calendar)
+	return HttpResponseRedirect(reverse('calendar'))
 
 @login_required	
-def edit_calendar(request):
+def add_calendar(request):
 	if request.method == 'POST':
 		form = CalendarForm(request.POST)
 		if form.is_valid():
@@ -43,7 +46,7 @@ def edit_calendar(request):
 			c.save()
 			
 			if c.urls:
-				cal.models.parse_iCal(c.urls, request.user)
+				cal.models.parse_iCal(c.urls, request.user, c)
 			
 			return HttpResponseRedirect(reverse('calendar'))
 	else:

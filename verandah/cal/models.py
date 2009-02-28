@@ -9,19 +9,20 @@ import settings
 import icalendar 
 
 
-def parse_iCal(url, owner):
+def parse_iCal(url, owner, c = None):
 	calendar = urllib.urlopen(url)
 	cal = icalendar.Calendar.from_string(calendar.read())
 	
-	try:
-		c = Calendar.objects.get(id = cal.decoded('X-WR-CALNAME'))
-	except Calendar.DoesNotExist, e:	
-		c = Calendar(
-			id = cal.decoded('X-WR-CALNAME'),
-			owner = owner,
-			urls = url
-		)
-		c.save()
+	if not c:
+		try:
+			c = Calendar.objects.get(id = cal.decoded('X-WR-CALNAME'))
+		except Calendar.DoesNotExist, e:	
+			c = Calendar(
+				id = cal.decoded('X-WR-CALNAME'),
+				owner = owner,
+				urls = url
+			)
+			c.save()
 	
 	for component in cal.walk():
 		if component.name == 'VEVENT':
@@ -97,6 +98,9 @@ class Event(models.Model):
 
 	def __str__(self):
 		return "Event:'%s' " % self.summary
+
+
+
 
 class Month(calendar.Calendar):
 	startday = calendar.SUNDAY
