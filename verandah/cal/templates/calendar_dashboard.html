@@ -13,18 +13,18 @@
 
 {% block siderail %}
 	<h2>Calendars</h2>
-		<ul>
+		<ul class = 'calendars'>
 			{% for cal in calendars %}
-			<li class = 'cal-{{event.calendar.cls}}' >
-				{{ cal.name }}
+			<li class = 'cal-{{cal.cls}}' >
+				{{ cal.id }}
 				{% if cal.urls %}
-					<a href = "{% url cal.views.sync cal.id %}">Sync</a>
+					<a class = 'sync' href = "{% url cal.views.sync cal.id %}">Sync</a>
 				{% else %}
-					<a href = "{% url cal.views.sync cal.id %}">Add url</a>		
+					<a class = 'sync' href = "{% url cal.views.sync cal.id %}">Add url</a>		
 				{% endif %}
 			</li>
 			{% endfor %}
-			<li><a href = "{% url calendar-add %}">Add a Calendar</a></li>
+			<li><a href = "{% url calendar-add %}">+ Add a Calendar</a></li>
 		</ul>
 			
 	<h2>Agenda</h2>

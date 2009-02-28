@@ -147,6 +147,8 @@ ul{margin:0; padding: 0;}
 	padding:0.5em;
 }
 
+#content #siderail ul.calendars li{list-style: none;}
+#content #siderail ul.calendars li a.sync{color: inherit; font-size: 80%;}
 
 #footer {
 	clear: both;
