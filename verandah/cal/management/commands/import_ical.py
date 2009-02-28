@@ -9,5 +9,5 @@ class Command(LabelCommand):
 	requires_model_validation = False
 	
 	def handle_label(self, label, **options):
-		cal.models.parse_iCal(label)
-		
+		#cal.models.parse_iCal(label)
+		pass

@@ -18,6 +18,20 @@
 {% load webdesign %}
 
 {% block siderail %}
+	<h2>Calendars</h2>
+		<ul>
+			{% for cal in calendars %}
+			<li class = 'cal-{{event.calendar.cls}}' >
+				{{ cal.id }}
+				{% if cal.urls %}
+					<a href = "{% url cal.views.sync %}">Sync</a>
+				{% else %}
+					<a href = "{% url cal.views.sync %}">Add url</a>		
+				{% endif %}
+			</li>
+			{% endfor %}
+		</ul>
+			
 	<h2>Agenda</h2>
 	<div>
 	{% lorem 3 p%}

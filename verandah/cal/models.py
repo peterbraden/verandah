@@ -9,7 +9,7 @@ import settings
 import icalendar 
 
 
-def parse_iCal(url):
+def parse_iCal(url, owner):
 	calendar = urllib.urlopen(url)
 	cal = icalendar.Calendar.from_string(calendar.read())
 	
@@ -17,7 +17,9 @@ def parse_iCal(url):
 		c = Calendar.objects.get(id = cal.decoded('X-WR-CALNAME'))
 	except Calendar.DoesNotExist, e:	
 		c = Calendar(
-			id = cal.decoded('X-WR-CALNAME')
+			id = cal.decoded('X-WR-CALNAME'),
+			owner = owner,
+			urls = url
 		)
 		c.save()
 	
@@ -65,7 +67,7 @@ def parse_iCal(url):
  
 class Calendar(models.Model):
  	id = models.CharField(primary_key = True, max_length = 60)	
- 	owner = models.ForeignKey(User)
+ 	owner = models.ForeignKey(User, editable = False)
  	
  	urls = models.TextField(blank = True)
  

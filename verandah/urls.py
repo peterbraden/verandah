@@ -3,7 +3,7 @@ import settings
 
 urlpatterns = patterns('',
 	url(r'^$', 'core.views.homepage', name = 'home'),
-    url(r'^calendar', include('cal.urls')),
+    url(r'^calendar/', include('cal.urls')),
         
     url(r'^typewriter$', 'typewriter.views.dashboard', name = 'typewriter'),
     url(r'^typewriter/document/(?P<document_name>[a-zA-z0-9_]*)$', 'typewriter.views.document', name = 'typewriter_document'),
