@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 
-
 {% block title %}{{ month.name }} Overview {% endblock %}
 
 {% block header %} &gt; Calendar &gt; {{ month.name }} {{ month.year }}{% endblock %}
@@ -30,8 +29,10 @@
 	<h2>Agenda</h2>
 	<ul>
 		{% for item in agenda %}
-		<li>
-			{{ item }}
+		<li class = 'cal-{{cal.cls}}'>
+			<span>{{ item.summary }}</span>
+		
+			<span class = 'date'>{% include 'cal/templates/fragments/date-range.html' %}</span>
 		</li>
 		{% endfor %}
 	</ul>

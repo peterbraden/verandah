@@ -29,6 +29,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.webdesign',
+    'django.contrib.humanize',
     'cal',
     'typewriter'
 )

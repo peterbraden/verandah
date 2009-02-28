@@ -14,7 +14,7 @@ body{
 	margin:0;
 }
 
-#header h1{float:left; margin:0;}
+#header h1{float:left; margin:0; font-size: 140%;}
 #header h1 a{color: #fff; text-decoration: none;}
 #header h1 span{font-size: 90%; color:#99f;}
 #header ul{float:right;}
@@ -24,7 +24,7 @@ body{
 
 
 #content{
-	width:80em;
+	width:78em;
 	margin:0 auto;
 }
 
@@ -140,7 +140,7 @@ ul{margin:0; padding: 0;}
 /**/
 #content #siderail{
 	float:left;
-	width:18em;
+	width:16em;
 	min-height: 100em;
 	border-left: 3px solid #999;
 	border-right: 3px solid #999;

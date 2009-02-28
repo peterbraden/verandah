@@ -105,20 +105,20 @@ class Event(models.Model):
 class Month(calendar.Calendar):
 	startday = calendar.SUNDAY
 	
-	def __init__(self, year, month):
+	def __init__(self, year, month, owner):
 		super(Month, self).__init__(self.startday)
 		self.year = year
 		self.month = month
-
+		self.owner = owner
 
 	def prev(self):
 		if self.month >1:
-			return Month(self.year, self.month - 1)	
+			return Month(self.year, self.month - 1, self.owner)	
 		return Month(self.year-1, 12)
 	
 	def next(self):
 		if self.month <12:
-			return Month(self.year, self.month + 1)	
+			return Month(self.year, self.month + 1, self.owner)	
 		return Month(self.year+1, 1)
 
 	def name(self):
@@ -137,7 +137,7 @@ class Month(calendar.Calendar):
 				dy = {
 					'date' : day,
 					'is_today' : day == datetime.datetime.now().date(),
-					'events' : Event.objects.filter(start__year = day.year, start__month = day.month, start__day = day.day).order_by('start'),
+					'events' : Event.objects.filter(calendar__owner = self.owner, start__year = day.year, start__month = day.month, start__day = day.day).order_by('start'),
 					'othermonth' : day.month != self.month,
 				}
 				

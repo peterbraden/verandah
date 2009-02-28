@@ -23,9 +23,9 @@ def dashboard(request, year = None, month = None):
 	date = datetime.datetime.now()
  
 	context = {
-		'month' : cal.models.Month(year and int(year) or date.year, month and int(month) or date.month),
+		'month' : cal.models.Month(year and int(year) or date.year, month and int(month) or date.month, request.user),
 		'calendars' : cal.models.Calendar.objects.filter(owner = request.user),
-		'agenda' : cal.models.Event.objects.filter(calendar__owner = request.user, start__gt = date).order_by('start')[:5],
+		'agenda' : cal.models.Event.objects.filter(calendar__owner = request.user, start__gt = date).order_by('start')[:10],
 	} 
 	return _render(request, 'cal/templates/calendar_dashboard.html', context)
 
