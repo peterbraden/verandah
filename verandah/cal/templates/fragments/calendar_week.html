@@ -1,0 +1,17 @@
+<table>
+	<tr>
+		<th>Day</th>
+		{% for day in week %}
+			<th>{{ day.date|date:"D jS" }}</th>
+		{% endfor %}
+	</tr>
+	{% for hour in range_24 %}
+		<tr>
+			<th>{{ hour }}</th>
+			{% for day in week %}
+				<td></td>
+			{% endfor %}
+		</tr>
+	{% endfor %}
+	
+</table>

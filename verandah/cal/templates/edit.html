@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+
+{% block title %}Add/Edit a Calendar{% endblock %}
+
+{% block header %} &gt; Calendar &gt; Add/Edit{% endblock %}
+
+{% block content %}
+	<form action="{% url calendar-add %}" method="post">
+		<ul>
+			{{ form.as_ul }}
+			<li><input type="submit" value="Save" /></li>
+		</ul>	
+	</form>
+{% endblock %}
