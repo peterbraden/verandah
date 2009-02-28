@@ -3,6 +3,7 @@ import calendar
 import urllib
 
 from django.db import models
+from django.contrib.auth.models import User
 
 import settings
 import icalendar 
@@ -64,6 +65,9 @@ def parse_iCal(url):
  
 class Calendar(models.Model):
  	id = models.CharField(primary_key = True, max_length = 60)	
+ 	owner = models.ForeignKey(User)
+ 	
+ 	urls = models.TextField(blank = True)
  
 	style = models.TextField() 
 

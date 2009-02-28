@@ -33,11 +33,20 @@
 			<div id="header">		
 				<h1><a href = '{% url home %}'>Verandah</a> <span>{% block header %}{% endblock %}</span></h1>
 
-				<ul>
+				<ul id = 'apps' >
 					<li><a href = '{% url calendar %}' >Calendar</a></li>
 					<li><a href = '{% url typewriter %}' >Typewriter</a></li>
 				</ul>	
 				
+				<ul id ="auth">
+					{% if user %}
+						<li>Logged in as {{ user.username }}</li>
+						<li>Logout</li>
+					{% else %}
+						<li>Login</li>
+						<li>Signup</li>	
+					{% endif %}	
+				</ul>
 				<br />
 			</div>	
 			
