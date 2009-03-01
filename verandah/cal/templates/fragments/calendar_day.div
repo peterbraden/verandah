@@ -5,7 +5,7 @@
 	{% if day.events %}
 		<ul>
 		{% for event in day.events %}
-			<li class = 'event cal-{{event.calendar.cls}}'>{{ event.summary }}
+			<li class = 'event event-{{ event.id }} cal-{{event.calendar.cls}}'>{{ event.summary }}
 				<span class = 'time'>{{ event.start|date:"H:m" }} - {{ event.end|date:"H:m" }}</span>
 				<span class = 'location'>{{ event.location }}</span>
 			

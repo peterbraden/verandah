@@ -1,6 +1,6 @@
 from django.forms import ModelForm, URLField, ChoiceField
 
-from cal.models import Calendar
+import cal.models
 
 class CalendarForm(ModelForm):
 	urls = URLField(help_text = "URL to an ical calendar (.ics)")
@@ -19,4 +19,9 @@ class CalendarForm(ModelForm):
 	
 	
 	class Meta:
-		model = Calendar
+		model = cal.models.Calendar
+
+class EventForm(ModelForm):
+	class Meta:
+		model = cal.models.Event
+		fields = ['calendar', 'summary']

@@ -146,11 +146,26 @@ ul{margin:0; padding: 0;}
 	min-height: 100em;
 	border-left: 3px solid #999;
 	border-right: 3px solid #999;
-	padding:0.5em;
+	padding:0em;
 }
+
+#content #siderail h2{
+	font-size: 120%;
+	padding: 0.2em;
+	margin:0;
+	background-color: #999;
+	color:#fff;
+	}
+	
+#content #siderail ul{
+	padding:0.5em;
+	}	
 
 #content #siderail ul.calendars li{list-style: none;}
 #content #siderail ul.calendars li a.sync{color: inherit; font-size: 80%;}
+
+#content #siderail ul.agenda li{list-style: none; border: thin solid; margin:0.2em; -moz-border-radius:0.5em; padding:0.2em; text-align: center;}
+#content #siderail ul.agenda li .date{color: inherit;}
 
 #footer {
 	clear: both;
@@ -159,35 +174,5 @@ ul{margin:0; padding: 0;}
 	padding: 0.5em;
 	border-top: 0.5em solid #ddd;
 	}
-/* AddBox Stuff */
 
-#addBox_overlay {
-  background-image: url('/media/images/overlay.png'); 
-  position: absolute;
-  margin: auto;
-  top: 0;
-  left: 0;
-  z-index: 100;
-  width:  100%;
-  height: 100%;
-}
-
-* html #addBox_overlay {
-  background-color: #000;
-  background-color: transparent;
-  background-image: url('/media/images/blank.gif');
-  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/media/images/overlay.png", sizingMethod="scale");
-}
-
-#addBox{
-	top: 20%;
-	left: 0px;
-	position: absolute;	
-	-moz-border-radius:2em;
-	overflow: auto;
-	width: 400px;
-	height: 400px;
-	z-index: 150;
-	display:none;
-}
 

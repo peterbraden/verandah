@@ -6,8 +6,24 @@
 
 {% block content %}
 
-	{% include 'cal/templates/fragments/calendar_month.html' %}
+	<a id = "add_event" href = "#todo">Add an Event&hellip;</a>
 
+	{% include 'cal/templates/fragments/calendar_month.html' %}
+	
+	
+	<form id = "event_form" style="display:none;">
+		<h2>Create a new Event&hellip;</h2>
+		<ul>
+			<li>
+				<label for = "id_summary">Summary</label>
+				<textarea id = "id_summary"></textarea>
+			</li>
+			<li><label for="id_start">Start:</label><input class = 'datetime' type="text" id = "id_start"></input></li>
+			<li><label for="id_end">End:</label><input class = 'datetime' type="text" id = "id_end"></input></li>
+			<li><input type="submit" value="save" /></li>
+		</ul>		
+	</form>
+	
 {% endblock %}
 
 {% block siderail %}
@@ -27,9 +43,9 @@
 		</ul>
 			
 	<h2>Agenda</h2>
-	<ul>
+	<ul class = 'agenda'>
 		{% for item in agenda %}
-		<li class = 'cal-{{cal.cls}}'>
+		<li class = 'cal-{{ item.calendar.cls }} event event-{{ item.id }}' >
 			<span>{{ item.summary }}</span>
 		
 			<span class = 'date'>{% include 'cal/templates/fragments/date-range.html' %}</span>

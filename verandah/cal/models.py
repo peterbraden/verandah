@@ -76,9 +76,13 @@ class Calendar(models.Model):
 
 	def cls(self):
 		return self.id.replace(" ", "") 
+	
+	def __str__(self):
+		return self.id 
+ 
  
 class Event(models.Model):
- 	id = models.CharField(primary_key = True, max_length = 60)
+ 	id = models.CharField(primary_key = True, max_length = 60, editable = False)
  	
  	calendar = models.ForeignKey(Calendar)
  	
@@ -99,7 +103,9 @@ class Event(models.Model):
 	def __str__(self):
 		return "Event:'%s' " % self.summary
 
-
+	def form(self):
+		import cal.forms
+		return cal.forms.EventForm(instance = self)
 
 
 class Month(calendar.Calendar):
