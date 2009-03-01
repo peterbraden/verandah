@@ -6,24 +6,31 @@
 
 {% block content %}
 
-	<a id = "add_event" href = "#todo">+ Add an Event&hellip;</a>
+	<a id = "add_event" href = "{% url calendar-event-add %}">+ Add an Event&hellip;</a>
 
 	{% include 'cal/templates/fragments/calendar_month.html' %}
 	
 	
-	<form id = "event_form" style="display:none;">
+	<form id = "event_form" style="display:none;" method="post" action="{% url calendar-event-add %}">
 		<h2>Create a new Event&hellip;</h2>
 		<ul>
 			<li>
 				<label for = "id_summary">Title</label>
-				<input type = "text" id = "id_summary" />
+				<input type = "text" id = "id_summary" name = "summary" />
 			</li>
 			<li>
 				<label for = "id_description">Description (optional)</label>
-				<textarea type = "text" id = "id_description" ></textarea>
+				<textarea type = "text" id = "id_description" name = "description" ></textarea>
 			</li>
-			<li><label for="id_start">Start</label><input class = 'datetime' type="text" id = "id_start"></input></li>
-			<li><label for="id_end">End</label><input class = 'datetime' type="text" id = "id_end"></input></li>
+			<li><label for="id_calendar">Calendar:</label>
+				<select id="id_calendar" name="calendar">
+					{% for cal in calendars %}
+						<option class = 'cal-{{ cal.cls }}' value = "{{cal.id}}">{{ cal.id }}</option>
+					{% endfor %}
+				</select>
+			</li>
+			<li><label for="id_start">Start</label><input class = 'datetime' type="text" id = "id_start" name = "start"></input></li>
+			<li><label for="id_end">End</label><input class = 'datetime' type="text" id = "id_end" name = "end"></input></li>
 			<li><input type="submit" value="save" /></li>
 		</ul>		
 	</form>

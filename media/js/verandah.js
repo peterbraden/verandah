@@ -56,8 +56,14 @@ $(document).ready(function(){
 		});
 		
 		// Make datefields datepickers
-		form.find('input.datetime').datepicker();
-		$("#ui-datepicker-div").css("z-index", 3000);
+		//form.find('input.datetime').removeClass('hasDatepicker').datepicker();
+		//$("#ui-datepicker-div").css("z-index", 3000);
+		
+		/* On submit do ajax */
+		//form.submit(function(){
+		//	console.log(form)
+		//	return false;
+		//});
 		
 		form.show().dialog({
 			'title' : title, 
@@ -65,6 +71,7 @@ $(document).ready(function(){
 			'resizable': false,
 			'width' : '20em',
 			});
+			
 		return false;
 	});
 	

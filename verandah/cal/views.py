@@ -8,7 +8,7 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import get_object_or_404
 
 import cal.models
-from cal.forms import CalendarForm
+from cal.forms import CalendarForm, EventForm
 
 
 def _render(request, template, context = {}):
@@ -58,3 +58,24 @@ def add_calendar(request):
 	}
 
 	return _render(request, 'cal/templates/edit.html', context)	
+	
+@login_required
+def event(request, event_id = None):
+	if request.method == 'GET':
+		if event_id:
+			form = EventForm(instance = get_object_or_404(cal.models.Event, id = event_id))
+		else:
+			form = EventForm()
+			
+	if request.method == 'POST':
+		instance = None
+		if event_id:
+			instance = EventForm(instance = get_object_or_404(Event, id = event_id))	
+		form = EventForm(request.POST, instance = instance)
+	
+	context = {
+		'form' : form	
+	}
+
+	return _render(request, 'cal/templates/edit-event.html', context)		
+	
