@@ -55,6 +55,10 @@ $(document).ready(function(){
 			label.remove();
 		});
 		
+		// Make datefields datepickers
+		form.find('input.datetime').datepicker();
+		$("#ui-datepicker-div").css("z-index", 3000);
+		
 		form.show().dialog({
 			'title' : title, 
 			'modal' : true, 
@@ -65,8 +69,7 @@ $(document).ready(function(){
 	});
 	
 	
-	/* Jquery ui datetimepicker */
-	$("input.datetime").datepicker();
+
 
 });
 		
