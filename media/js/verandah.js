@@ -12,12 +12,16 @@ $(document).ready(function(){
 	
 	/* Event Click Show lightbox Form */
 	$(".event").click(function(){
-		$(this).dialog();
+		$(this).clone().dialog({'title' : 'Modify Event', 'modal' : true});
 	}).css('cursor', 'pointer');
 
 	/* Add Event form lightbox */
 	$("#add_event").click(function(){
-		$("#event_form").show().dialog();
+		var form = $("#event_form").clone();
+		
+		var title = form.find('h2').text()
+		form.find('h2').remove();
+		form.show().dialog({'title' : title, 'modal' : true, 'resizable': false});
 		return false;
 	});
 	
