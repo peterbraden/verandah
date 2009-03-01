@@ -7,6 +7,8 @@ body{
 }
 
 
+.blur{color: #999;}
+
 #header{
 	background-color: #555;
 	color: #fff;
@@ -127,7 +129,6 @@ ul{margin:0; padding: 0;}
 	}
 .event .time{font-weight: bold; font-size: 70%;}	
 
-
 /*Typewriter */
 
 #content #typewriter textarea{
@@ -175,4 +176,9 @@ ul{margin:0; padding: 0;}
 	border-top: 0.5em solid #ddd;
 	}
 
+
+/*** Dialogs ***/
+/** Calendar **/
+/* Create Event */
+#event_form li{list-style: none;}
 

@@ -6,7 +6,7 @@
 
 {% block content %}
 
-	<a id = "add_event" href = "#todo">Add an Event&hellip;</a>
+	<a id = "add_event" href = "#todo">+ Add an Event&hellip;</a>
 
 	{% include 'cal/templates/fragments/calendar_month.html' %}
 	
@@ -15,11 +15,15 @@
 		<h2>Create a new Event&hellip;</h2>
 		<ul>
 			<li>
-				<label for = "id_summary">Summary</label>
-				<textarea id = "id_summary"></textarea>
+				<label for = "id_summary">Title</label>
+				<input type = "text" id = "id_summary" />
 			</li>
-			<li><label for="id_start">Start:</label><input class = 'datetime' type="text" id = "id_start"></input></li>
-			<li><label for="id_end">End:</label><input class = 'datetime' type="text" id = "id_end"></input></li>
+			<li>
+				<label for = "id_description">Description (optional)</label>
+				<textarea type = "text" id = "id_description" ></textarea>
+			</li>
+			<li><label for="id_start">Start</label><input class = 'datetime' type="text" id = "id_start"></input></li>
+			<li><label for="id_end">End</label><input class = 'datetime' type="text" id = "id_end"></input></li>
 			<li><input type="submit" value="save" /></li>
 		</ul>		
 	</form>
