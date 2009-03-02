@@ -1,11 +1,16 @@
 {% load humanize %}
 
-{% ifequal item.start.date item.end.date %}
-	{{ item.start|date:"H:m" }} - {{ item.end|date:"H:m" }} {{ item.start|naturalday }}
+{% ifequal item.start.date now.date %}
+	in {{ item.start|timeuntil }}
 {% else %}
-	{% ifequal item.start.time item.end.time %}
-		{{ item.start|naturalday }} - {{ item.end|naturalday }}
+	{% ifequal item.start.date item.end.date %}
+		{{ item.start|date:"H:m" }} - {{ item.end|date:"H:m" }} {{ item.start|naturalday }}
 	{% else %}
-		{{ item.start|date:"H:m jS M" }} - {{ item.end|date:"H:m jS M" }}
-	{% endifequal %}	
+		{% ifequal item.start.time item.end.time %}
+			{{ item.start|naturalday }} - {{ item.end|naturalday }}
+		{% else %}
+			{{ item.start|date:"H:m jS M" }} - {{ item.end|date:"H:m jS M" }}
+		{% endifequal %}	
+	{% endifequal %}
 {% endifequal %}	
+		

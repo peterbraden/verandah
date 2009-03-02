@@ -54,6 +54,7 @@
 		</ul>
 			
 	<h2>Agenda</h2>
+	{% now "H:m" %}
 	<ul class = 'agenda'>
 		{% for item in agenda %}
 		<li class = 'cal-{{ item.calendar.cls }} event event-{{ item.id }}' >

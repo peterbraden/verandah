@@ -2,7 +2,7 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 CONFIG = "dev"
 
-TIME_ZONE = 'America/Chicago'
+TIME_ZONE = 'GMT'
 LANGUAGE_CODE = 'en-us'
 SITE_ID = 1
 USE_I18N = False
