@@ -38,7 +38,7 @@ def parse_iCal(url, owner, c = None):
 			kwargs = {
 				'id' : component.decoded('uid'),
 				'summary' : component.decoded('summary'),
-				'cls' : component.decoded('class'),
+				'privacy' : component.decoded('class'),
 				'description' : component.decoded('description'),
 				'location' : component.decoded('location'),
 				'status' : component.decoded('status'),
@@ -99,11 +99,13 @@ class Event(models.Model):
  	status = models.TextField()
 	
 	location = models.TextField(blank = True)
-	latitude = models.FloatField(blank = True)
-	longitude = models.FloatField(blank = True)
+	latitude = models.FloatField(null = True)
+	longitude = models.FloatField(null = True)
 	
 	start = models.DateTimeField()
  	end = models.DateTimeField()
+	priority = models.IntegerField(default = 0)
+
 	
 	# Event Object Metadata
 	privacies = (
@@ -210,12 +212,12 @@ class Month(calendar.Calendar):
 	def prev(self):
 		if self.month >1:
 			return Month(self.year, self.month - 1, self.owner)	
-		return Month(self.year-1, 12)
+		return Month(self.year-1, 12, self.owner)
 	
 	def next(self):
 		if self.month <12:
 			return Month(self.year, self.month + 1, self.owner)	
-		return Month(self.year+1, 1)
+		return Month(self.year+1, 1, self.owner)
 
 	def name(self):
 		return calendar.month_name[self.month]
