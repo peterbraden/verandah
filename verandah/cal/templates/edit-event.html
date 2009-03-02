@@ -3,7 +3,7 @@
 
 {% block title %}Add/Edit an Event{% endblock %}
 
-{% block header %} &gt; Calendar &gt; Add/Edit Event{% endblock %}
+{% block header %} &gt; <a href = "{% url calendar %}">Calendar</a> &gt; Add/Edit Event{% endblock %}
 
 {% block content %}
 	<form action="{% url calendar-event-add %}" method="post">

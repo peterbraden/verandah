@@ -9,6 +9,8 @@ body{
 
 .blur{color: #999;}
 
+a:hover{text-decoration: underline !important;}
+
 #header{
 	background-color: #555;
 	color: #fff;
@@ -19,6 +21,7 @@ body{
 #header h1{float:left; margin:0; font-size: 140%;}
 #header h1 a{color: #fff; text-decoration: none;}
 #header h1 span{font-size: 90%; color:#99f;}
+#header h1 span a{color:#99f;}
 #header ul{float:right;}
 #header ul li{display: inline; list-style: none;}
 #header ul li a{color:#fff;}
