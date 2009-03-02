@@ -25,7 +25,7 @@ def dashboard(request, year = None, month = None):
 	context = {
 		'month' : cal.models.Month(year and int(year) or date.year, month and int(month) or date.month, request.user),
 		'calendars' : cal.models.Calendar.objects.filter(owner = request.user),
-		'agenda' : cal.models.Event.objects.filter(calendar__owner = request.user, start__gt = date).order_by('start')[:10],
+		'agenda' : cal.models.Agenda(request.user),
 	} 
 	context['events'] = list(set(context['agenda']))
 	return _render(request, 'cal/templates/calendar_dashboard.html', context)

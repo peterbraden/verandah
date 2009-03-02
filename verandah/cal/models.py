@@ -91,6 +91,13 @@ class Event(models.Model):
  	status = models.TextField()
 	location = models.TextField()
 	
+	privacies = (
+		("PUBLIC", "PUBLIC"),
+		("PRIVATE", "PRIVATE"),
+		("CONFIDENTIAL", "CONFIDENTIAL"),
+	)
+	privacy = models.CharField(choices = privacies, max_length = 20)# In RFC-2445 this is known as class
+	
  	transp = models.TextField()
  	cls =  models.TextField()
  	sequence = models.IntegerField()
@@ -100,6 +107,13 @@ class Event(models.Model):
 	
 	created = models.DateTimeField()
 
+	statuses = ( 
+		("TENTATIVE", "TENTATIVE"),
+		("CONFIRMED", "CONFIRMED"),
+		("CANCELLED", "CANCELLED" ), 
+	)
+	status = models.CharField(choices = statuses, max_length = 20, blank = True)
+
 	def __str__(self):
 		return "Event:'%s' " % self.summary
 
@@ -107,6 +121,66 @@ class Event(models.Model):
 		import cal.forms
 		return cal.forms.EventForm(instance = self)
 
+
+class Todo(models.Model):
+	"""
+	A Todo list item.
+	
+	Specifies details about a single task.
+	"""
+
+	id = models.CharField(primary_key = True, max_length = 60, editable = False)	
+
+	calendar = models.ForeignKey(Calendar)
+	
+	summary = models.TextField()
+ 	description = models.TextField()
+ 	location = models.TextField()
+ 	
+ 	statuses = ( 
+		("NEEDS-ACTION", "NEEDS-ACTION"),
+		("COMPLETED", "COMPLETED"),
+		("IN-PROCESS", "IN-PROCESS"), 
+		("CANCELLED", "CANCELLED" ), 
+	)
+ 	status = models.CharField(choices = statuses, max_length = 20)
+ 	
+ 	
+ 	subsequent = models.ForeignKey('Todo', blank = True)
+ 	
+ 	due = models.DateTimeField(blank = True)
+ 	created = models.DateTimeField()
+ 	duration = models.FloatField(blank = True)
+ 	priority = models.IntegerField(default = 0)
+
+
+
+class Agenda(object):
+	"""
+	Organise a user's tasks
+	"""
+	
+	def __init__(self, user):
+		self.user = user
+	
+	
+	def items(self): 
+ 		now = datetime.datetime.now()
+ 		
+ 		itms = []
+ 		
+ 		for todo in Todo.objects.filter(calendar__owner = self.user, status = "COMPLETED"):
+ 			itms.append(todo)
+ 		
+ 		for event in Event.objects.filter(calendar__owner = self.user, start__gt = now).order_by('start'):
+ 			itms.append(event)
+ 		
+ 		return itms
+ 	
+ 	def __iter__(self):
+ 		for i in self.items():
+ 			yield i
+ 		
 
 class Month(calendar.Calendar):
 	startday = calendar.SUNDAY

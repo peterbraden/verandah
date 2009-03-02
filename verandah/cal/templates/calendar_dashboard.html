@@ -55,6 +55,7 @@
 			
 	<h2>Agenda ({% now "H:m" %})</h2>
 	<ul class = 'agenda'>
+		<li><a href = "#">+ Add Todo</a></li>
 		{% for item in agenda %}
 		<li class = 'cal-{{ item.calendar.cls }} event event-{{ item.id }}' >
 			<span>{{ item.summary }}</span>
