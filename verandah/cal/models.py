@@ -82,30 +82,46 @@ class Calendar(models.Model):
  
  
 class Event(models.Model):
+	"""
+	A Calendar Event.
+	
+	Modelled loosely around vEvent from rfc-2445.
+	
+	"""
+
  	id = models.CharField(primary_key = True, max_length = 60, editable = False)
  	
  	calendar = models.ForeignKey(Calendar)
  	
+ 	# Event Data
  	summary = models.TextField()
  	description = models.TextField()
  	status = models.TextField()
-	location = models.TextField()
 	
+	location = models.TextField(blank = True)
+	latitude = models.FloatField(blank = True)
+	longitude = models.FloatField(blank = True)
+	
+	start = models.DateTimeField()
+ 	end = models.DateTimeField()
+	
+	# Event Object Metadata
 	privacies = (
 		("PUBLIC", "PUBLIC"),
 		("PRIVATE", "PRIVATE"),
 		("CONFIDENTIAL", "CONFIDENTIAL"),
 	)
-	privacy = models.CharField(choices = privacies, max_length = 20)# In RFC-2445 this is known as class
+	privacy = models.CharField(choices = privacies, max_length = 20, default= "PUBLIC")# In RFC-2445 this is known as class
 	
  	transp = models.TextField()
- 	cls =  models.TextField()
  	sequence = models.IntegerField()
  	
- 	start = models.DateTimeField()
- 	end = models.DateTimeField()
+
 	
-	created = models.DateTimeField()
+	created = models.DateTimeField(default = datetime.datetime.now(), editable = False)
+	last_modified = models.DateTimeField(default = datetime.datetime.now())
+
+
 
 	statuses = ( 
 		("TENTATIVE", "TENTATIVE"),
