@@ -1,6 +1,8 @@
 from django.forms import ModelForm, URLField, ChoiceField
 
 import cal.models
+import hashlib
+import datetime
 
 class CalendarForm(ModelForm):
 	urls = URLField(help_text = "URL to an ical calendar (.ics)")
@@ -24,4 +26,9 @@ class CalendarForm(ModelForm):
 class EventForm(ModelForm):
 	class Meta:
 		model = cal.models.Event
-		fields = ['calendar', 'summary']
+		exclude = ['transp', 'sequence', 'last_modified', 'priority']
+	
+	def save(self):
+		event =  super(EventForm, self).save(commit = False)
+		event.id = "%s%s" % (hashlib.sha1("%s%s" % (event.calendar.owner.username, datetime.datetime.now())).hexdigest(), "@verandah")	
+		event.save()

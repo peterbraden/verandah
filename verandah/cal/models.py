@@ -95,12 +95,12 @@ class Event(models.Model):
  	
  	# Event Data
  	summary = models.TextField()
- 	description = models.TextField()
+ 	description = models.TextField(blank = True)
  	status = models.TextField()
 	
 	location = models.TextField(blank = True)
-	latitude = models.FloatField(null = True)
-	longitude = models.FloatField(null = True)
+	latitude = models.FloatField(null = True, blank = True)
+	longitude = models.FloatField(null = True, blank = True)
 	
 	start = models.DateTimeField()
  	end = models.DateTimeField()
@@ -113,10 +113,10 @@ class Event(models.Model):
 		("PRIVATE", "PRIVATE"),
 		("CONFIDENTIAL", "CONFIDENTIAL"),
 	)
-	privacy = models.CharField(choices = privacies, max_length = 20, default= "PUBLIC")# In RFC-2445 this is known as class
+	privacy = models.CharField(choices = privacies, max_length = 20, default= "PUBLIC", blank = True)# In RFC-2445 this is known as class
 	
- 	transp = models.TextField()
- 	sequence = models.IntegerField()
+ 	transp = models.TextField(default = "OPAQUE")
+ 	sequence = models.IntegerField(default = 1)
  	
 
 	

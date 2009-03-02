@@ -70,9 +70,14 @@ def event(request, event_id = None):
 	if request.method == 'POST':
 		instance = None
 		if event_id:
-			instance = EventForm(instance = get_object_or_404(Event, id = event_id))	
+			instance = EventForm(request.POST, instance = get_object_or_404(Event, id = event_id))	
 		form = EventForm(request.POST, instance = instance)
 	
+		if form.is_valid():
+			form.save()	
+			return HttpResponseRedirect(reverse('calendar'))
+			
+			
 	context = {
 		'form' : form	
 	}
