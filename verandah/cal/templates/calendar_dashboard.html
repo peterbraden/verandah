@@ -53,8 +53,7 @@
 			<li><a href = "{% url calendar-add %}">+ Add a Calendar</a></li>
 		</ul>
 			
-	<h2>Agenda</h2>
-	{% now "H:m" %}
+	<h2>Agenda ({% now "H:m" %})</h2>
 	<ul class = 'agenda'>
 		{% for item in agenda %}
 		<li class = 'cal-{{ item.calendar.cls }} event event-{{ item.id }}' >
